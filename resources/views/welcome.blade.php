@@ -62,6 +62,7 @@
                 margin-bottom: 30px;
             }
         </style>
+        <meta name="csrf-token" content="{{ csrf_token() }}">
     </head>
     <body>
         <div class="flex-center position-ref full-height">
@@ -95,5 +96,12 @@
                 </div>
             </div>
         </div>
+        <script src="{{ asset('js/app.js') }}"></script>
+        <script>
+            Echo.channel('home')
+                .listen('NewMessage' , (e) => {
+                    console.log(e.message);
+                })
+        </script>
     </body>
 </html>
